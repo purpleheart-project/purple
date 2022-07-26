@@ -12,15 +12,13 @@ export class MockController {
           {
             title: 'parent 1-0',
             key: '0-0-0',
-            disabled: true,
             children: [
               {
-                title: 'leaf',
+                title: 'leaf1',
                 key: '0-0-0-0',
-                disableCheckbox: true,
               },
               {
-                title: 'leaf',
+                title: 'leaf2',
                 key: '0-0-0-1',
               },
             ],
