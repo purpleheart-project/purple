@@ -1,8 +1,8 @@
 import { Column, Entity } from "typeorm";
 import { CommonBaseEntity } from "../../../common/base/common-base.entity";
 
-@Entity('team_member')
-export class TeamMember extends CommonBaseEntity {
+@Entity('workspace_member')
+export class WorkspaceMember extends CommonBaseEntity {
   @Column({
     type: 'int',
     default: 0,
@@ -14,8 +14,8 @@ export class TeamMember extends CommonBaseEntity {
   @Column({
     type: 'int',
     default: 0,
-    comment: 'teamId',
-    name: 'team_id',
+    comment: 'workspaceId',
+    name: 'workspace_id',
   })
-  teamId: number;
+  workspaceId: number;
 }

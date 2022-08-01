@@ -8,6 +8,7 @@ import { RetrieveFileService } from './service/retrieve-file.service';
 import { RetrieveRequestService } from './service/retrieve-request.service';
 import { UpdateRequestService } from './service/update-request.service';
 import { DeleteFileService } from './service/delete-file.service';
+import {ListWorkspaceService} from "./service/list-workspace.service";
 
 @Module({
   imports: [DatabaseModule],
@@ -19,6 +20,7 @@ import { DeleteFileService } from './service/delete-file.service';
     RetrieveRequestService,
     UpdateRequestService,
     DeleteFileService,
+      ListWorkspaceService,
     ...requestProviders,
   ],
 })

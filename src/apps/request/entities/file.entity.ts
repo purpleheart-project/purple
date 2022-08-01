@@ -29,6 +29,7 @@ export class File extends CommonBaseEntity {
     type: 'int',
     default: 0,
     comment: '关系请求的id',
+    name:'relationship_request_id'
   })
   relationshipRequestId: number;
 
@@ -36,9 +37,9 @@ export class File extends CommonBaseEntity {
     type: 'int',
     default: 0,
     comment: '团队id',
-    name: 'team_id',
+    name: 'workspace_id',
   })
-  teamId: number;
+  workspaceId: number;
 
   @Column({
     type: 'int',

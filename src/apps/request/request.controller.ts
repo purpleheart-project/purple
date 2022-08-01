@@ -13,6 +13,7 @@ import { RetrieveFileService } from "./service/retrieve-file.service";
 import {RetrieveRequestService} from "./service/retrieve-request.service";
 import {UpdateRequestService} from "./service/update-request.service";
 import {DeleteFileService} from "./service/delete-file.service";
+import {ListWorkspaceService} from "./service/list-workspace.service";
 
 @Controller()
 export class RequestController {
@@ -23,6 +24,7 @@ export class RequestController {
     private readonly retrieveRequestService: RetrieveRequestService,
     private readonly updateRequestService: UpdateRequestService,
     private readonly deleteFileService: DeleteFileService,
+    private readonly listWorkspaceService: ListWorkspaceService,
   ) {}
 
   @Get('test')
@@ -56,5 +58,10 @@ export class RequestController {
   @Post('request')
   updateARequest(@Body() body) {
     return this.updateRequestService.invoke(body);
+  }
+
+  @Get('workspace')
+  listworkspace(@Query() body) {
+    return this.listWorkspaceService.listworkspace(body);
   }
 }

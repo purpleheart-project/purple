@@ -1,8 +1,8 @@
 import { Column, Entity } from "typeorm";
 import { CommonBaseEntity } from "../../../common/base/common-base.entity";
 
-@Entity('team')
-export class Team extends CommonBaseEntity {
+@Entity('workspace')
+export class Workspace extends CommonBaseEntity {
   @Column({
     type: 'varchar',
     default: '',
