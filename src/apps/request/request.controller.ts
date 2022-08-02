@@ -1,67 +1,102 @@
 import {
-  Body,
-  Controller, Delete,
-  Get, Param,
-  Post, Query,
-  Request,
-  UnauthorizedException,
-  UseGuards,
+  Controller,
 } from "@nestjs/common";
-import { RequestService } from "./request.service";
-import { CreateFileService } from "./service/create-file.service";
-import { RetrieveFileService } from "./service/retrieve-file.service";
-import {RetrieveRequestService} from "./service/retrieve-request.service";
-import {UpdateRequestService} from "./service/update-request.service";
-import {DeleteFileService} from "./service/delete-file.service";
-import {ListWorkspaceService} from "./service/list-workspace.service";
+import {
+  EnvService,
+  EnvVarService,
+  FileService,
+  RequestService,
+  UserService,
+  UserSettingService,
+  WorkspaceMemberService,
+  WorkspaceService
+} from "./request.service";
+import {Crud, CrudController} from "@nestjsx/crud";
+import {Request} from './entities/request.entity'
+import {File} from './entities/file.entity'
+import {Env} from "./entities/env.entity";
+import {EnvVar} from "./entities/env-var.entity";
+import {User} from "./entities/user.entity";
+import {UserSetting} from "./entities/user-setting.entity";
+import {Workspace} from "./entities/workspace.entity";
+import {WorkspaceMember} from "./entities/workspace-member.entity";
 
-@Controller()
-export class RequestController {
-  constructor(
-    private readonly requestService: RequestService,
-    private readonly createFileService: CreateFileService,
-    private readonly retrieveFileService: RetrieveFileService,
-    private readonly retrieveRequestService: RetrieveRequestService,
-    private readonly updateRequestService: UpdateRequestService,
-    private readonly deleteFileService: DeleteFileService,
-    private readonly listWorkspaceService: ListWorkspaceService,
-  ) {}
+@Crud({
+  model: {
+    type: Request,
+  },
+})
+@Controller("request")
+export class RequestController implements CrudController<Request> {
+  constructor(public service: RequestService) {}
+}
 
-  @Get('test')
-  an() {
-    return this.createFileService.invoke({ type: 2 });
+@Crud({
+  model: {
+    type: File
   }
+})
+@Controller("file")
+export class FileController implements CrudController<File> {
+  constructor(public service: FileService) {}
+}
 
-  @Get('directorytree')
-  directorytree() {
-    return this.retrieveFileService.getDirectoryTree({ type: 2 });
-  }
+@Crud({
+  model: {
+    type: Env,
+  },
+})
+@Controller("env")
+export class EnvController implements CrudController<Env> {
+  constructor(public service: EnvService) {}
+}
 
-  // 创建文件
-  @Post('directorytree')
-  createDirectorytree(@Body() body) {
-    return this.createFileService.invoke(body);
+@Crud({
+  model: {
+    type: EnvVar
   }
+})
+@Controller("envvar")
+export class EnvVarController implements CrudController<EnvVar> {
+  constructor(public service: EnvVarService) {}
+}
 
-  // 删除文件
-  @Delete('directorytree')
-  deleteDirectorytree(@Query() query) {
-    return this.deleteFileService.invoke(query);
-  }
+@Crud({
+  model: {
+    type: User,
+  },
+})
+@Controller("user")
+export class UserController implements CrudController<User> {
+  constructor(public service: UserService) {}
+}
 
-  @Get('request')
-  retrieveARequest(@Param() param,@Query() query) {
-    // console.log(query)
-    return this.retrieveRequestService.invoke(query);
+@Crud({
+  model: {
+    type: UserSetting
   }
+})
+@Controller("usersetting")
+export class UserSettingController implements CrudController<UserSetting> {
+  constructor(public service: UserSettingService) {}
+}
 
-  @Post('request')
-  updateARequest(@Body() body) {
-    return this.updateRequestService.invoke(body);
-  }
+@Crud({
+  model: {
+    type: Workspace,
+  },
+})
+@Controller("workspace")
+export class WorkspaceController implements CrudController<Workspace> {
+  constructor(public service: WorkspaceService) {}
+}
 
-  @Get('workspace')
-  listworkspace(@Query() body) {
-    return this.listWorkspaceService.listworkspace(body);
+@Crud({
+  model: {
+    type: WorkspaceMember
   }
+})
+@Controller("workspacemember")
+export class WorkspaceMemberController implements CrudController<WorkspaceMember> {
+  constructor(public service: WorkspaceMemberService) {}
 }
